@@ -158,7 +158,7 @@ class GitalkComponent extends Component {
     this._accessToken = token
   }
   get loginLink () {
-    const githubOauthUrl = 'http://github.com/login/oauth/authorize'
+    const githubOauthUrl = 'https://github.com/login/oauth/authorize'
     const { clientID } = this.options
     const query = {
       client_id: clientID,
@@ -499,6 +499,12 @@ class GitalkComponent extends Component {
         isOccurError: true,
         errorMsg: formatErrorMsg(err)
       })
+    }).then(res => {
+      if (res) {
+        this.setState({
+          isNoInit: false,
+        })
+      }
     })
   }
   handleCommentCreate = e => {
@@ -507,19 +513,23 @@ class GitalkComponent extends Component {
       this.commentEL.focus()
       return
     }
-    this.setState({ isCreating: true })
-    this.createComment()
-      .then(() => this.setState({
-        isCreating: false,
-        isOccurError: false
-      }))
-      .catch(err => {
-        this.setState({
+    this.setState(state => {
+      if (state.isCreating) return
+
+      this.createComment()
+        .then(() => this.setState({
           isCreating: false,
-          isOccurError: true,
-          errorMsg: formatErrorMsg(err)
+          isOccurError: false
+        }))
+        .catch(err => {
+          this.setState({
+            isCreating: false,
+            isOccurError: true,
+            errorMsg: formatErrorMsg(err)
+          })
         })
-      })
+      return { isCreating: true }
+    })
   }
   handleCommentPreview = e => {
     this.setState({

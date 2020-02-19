@@ -1,6 +1,12 @@
 # Gitalk
 
-[![NPM][npm-version-image]][npm-version-url] [![CDNJS][cdnjs-version-image]][cdnjs-version-url] [![david-dm][david-dm-image]][david-dm-url] [![travis][travis-image]][travis-url] [![coveralls][coveralls-image]][coveralls-url] [![gzip][gzip-size]][gzip-url]
+[![NPM][npm-version-image]][npm-version-url] 
+[![CDNJS][cdnjs-version-image]][cdnjs-version-url] 
+[![jsdelivr](https://data.jsdelivr.com/v1/package/npm/gitalk/badge)](https://www.jsdelivr.com/package/npm/gitalk)
+[![david-dm][david-dm-image]][david-dm-url] 
+[![travis][travis-image]][travis-url] 
+[![coveralls][coveralls-image]][coveralls-url] 
+[![gzip-size][gzip-size]][gzip-url]
 
 Gitalk is a modern comment component based on GitHub Issue and Preact.
 
@@ -9,7 +15,7 @@ Gitalk is a modern comment component based on GitHub Issue and Preact.
 - Authentication with github account
 - Serverless, all comments will be stored as github issues
 - Both personal and organization github projects can be used to store comments
-- Localization, support multiple languages [en, zh-CN, zh-TW, es-ES, fr, ru]
+- Localization, support multiple languages [en, zh-CN, zh-TW, es-ES, fr, ru, de]
 - Facebook-like distraction free mode (Can be enabled via the `distractionFreeMode` option)
 - Hotkey submit comment (cmd|ctrl + enter)
 
@@ -70,6 +76,24 @@ gitalk.render('gitalk-container')
 A **GitHub Application** is needed for authorization, if you don't have one, [Click here to register](https://github.com/settings/applications/new) a new one.
 
 **Note:** You must specify the website domain url in the `Authorization callback URL` field.
+
+### Use in React
+
+Import the Gitalk with
+
+```jsx
+import GitalkComponent from "gitalk/dist/gitalk-component";
+```
+
+And use the component like
+
+```jsx
+<GitalkComponent options={{
+  clientID: "...",
+  // ...
+  // options below
+}} />
+```
 
 ## Options
 
@@ -186,6 +210,12 @@ A **GitHub Application** is needed for authorization, if you don't have one, [Cl
 
   Init render and mount plugin.
 
+## TypeScript
+
+TypeScript definitions for options and Gitalk class come with the package and should be automatically detected.
+
+Definitions for React component usage are not included.
+
 ## Contributing
 
 1. [Fork the repository](https://github.com/gitalk/gitalk/fork) and create your branch from master
@@ -214,5 +244,5 @@ MIT
 [travis-url]: https://travis-ci.org/gitalk/gitalk
 [coveralls-image]: https://img.shields.io/coveralls/gitalk/gitalk/master.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/github/gitalk/gitalk
-[gzip-size]: http://img.badgesize.io/https://unpkg.com/gitalk/dist/gitalk.min.js?compression=gzip&style=flat-square
+[gzip-size]: https://img.badgesize.io/https://unpkg.com/gitalk/dist/gitalk.min.js?compression=gzip&style=flat-square
 [gzip-url]: https://unpkg.com/gitalk/dist/gitalk.min.js
